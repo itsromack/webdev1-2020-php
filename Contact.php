@@ -2,6 +2,7 @@
 
 class Contact
 {
+	private $id;
 	private $first_name;
 	private $last_name;
 	private $address;
@@ -24,6 +25,16 @@ class Contact
 		$this->region = $region;
 		$this->zip = $zip;
 		$this->age = (int) $age;		
+	}
+
+	public function getId()
+	{
+		return $this->id;
+	}
+
+	public function setId($id)
+	{
+		$this->id = $id;
 	}
 
 	public function getFullName()
@@ -73,10 +84,5 @@ class Contact
 		return $birthYear;
 	}
 }
-
-
-
-
-
 
 

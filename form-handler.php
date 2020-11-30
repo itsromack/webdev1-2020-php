@@ -1,6 +1,10 @@
 <?php
 
+include_once('connect.php');
 include_once('Contact.php');
+include_once('ContactHandler.php');
+
+$handler = new ContactHandler($connection);
 
 if (!empty($_POST)):
 
@@ -20,12 +24,17 @@ if (!empty($_POST)):
 		$age
 	);
 
+	$result = $handler->saveContact($formData);
+	if (!$result) exit('An error occured, unable to save contact to the database.');
+
 ?>
 <h1>Thank you <?php echo $formData->getFullName(); ?> for submitting the form</h1>
 <p>
 We saved your address: "<?php echo $formData->getCompleteAddress(); ?>".
 <br>You were born in <?php echo $formData->getBirthYear(); ?>
 </p>
+
+<a href="list-of-contacts.php">List of Contacts</a>
 
 <?php else: ?>
 
